@@ -1,0 +1,1224 @@
+diff --git a/pom.xml b/pom.xml
+index 63e7417..75706e3 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -1,174 +1,83 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-	<modelVersion>
+-		4.0.0
+-	</modelVersion>
+-	<groupId>
+-		groupId
+-	</groupId>
+-	<artifactId>
+-		WebAutomationUi
+-	</artifactId>
+-	<version>
+-		1.0-SNAPSHOT
+-	</version>
++	<modelVersion>4.0.0</modelVersion>
++
++	<groupId>groupId</groupId>
++	<artifactId>WebAutomationUi</artifactId>
++	<version>1.0-SNAPSHOT</version>
++
+ 	<properties>
+-		<maven.compiler.source>
+-			18
+-		</maven.compiler.source>
+-		<maven.compiler.target>
+-			18
+-		</maven.compiler.target>
++		<maven.compiler.source>18</maven.compiler.source>
++		<maven.compiler.target>18</maven.compiler.target>
+ 	</properties>
++
+ 	<dependencies>
++		<!-- Selenium -->
+ 		<dependency>
+-			<groupId>
+-				org.seleniumhq.selenium
+-			</groupId>
+-			<artifactId>
+-				selenium-java
+-			</artifactId>
+-			<version>
+-				4.8.2
+-			</version>
++			<groupId>org.seleniumhq.selenium</groupId>
++			<artifactId>selenium-java</artifactId>
++			<version>4.8.2</version>
+ 		</dependency>
++
++		<!-- TestNG -->
+ 		<dependency>
+-			<groupId>
+-				org.testng
+-			</groupId>
+-			<artifactId>
+-				testng
+-			</artifactId>
+-			<version>
+-				7.4.0
+-			</version>
++			<groupId>org.testng</groupId>
++			<artifactId>testng</artifactId>
++			<version>7.4.0</version>
+ 		</dependency>
++
++		<!-- WebDriver Manager -->
+ 		<dependency>
+-			<groupId>
+-				io.github.bonigarcia
+-			</groupId>
+-			<artifactId>
+-				webdrivermanager
+-			</artifactId>
+-			<version>
+-				5.5.2
+-			</version>
++			<groupId>io.github.bonigarcia</groupId>
++			<artifactId>webdrivermanager</artifactId>
++			<version>5.5.2</version>
+ 		</dependency>
++
++		<!-- Allure TestNG -->
+ 		<dependency>
+-			<groupId>
+-				io.github.bonigarcia
+-			</groupId>
+-			<artifactId>
+-				webdrivermanager
+-			</artifactId>
+-			<version>
+-				5.5.2
+-			</version>
+-			<scope>
+-				test
+-			</scope>
++			<groupId>io.qameta.allure</groupId>
++			<artifactId>allure-testng</artifactId>
++			<version>2.17.2</version>
+ 		</dependency>
++
++		<!-- Allure Generator (if needed) -->
+ 		<dependency>
+-			<groupId>
+-				io.github.bonigarcia
+-			</groupId>
+-			<artifactId>
+-				webdrivermanager
+-			</artifactId>
+-			<version>
+-				5.5.2
+-			</version>
+-			<scope>
+-				compile
+-			</scope>
++			<groupId>io.qameta.allure</groupId>
++			<artifactId>allure-generator</artifactId>
++			<version>2.8.0</version>
+ 		</dependency>
++
++		<!-- JUnit (if you still need it) -->
+ 		<dependency>
+-			<groupId>
+-				io.qameta.allure
+-			</groupId>
+-			<artifactId>
+-				allure-testng
+-			</artifactId>
+-			<version>
+-				2.17.2
+-			</version>
++			<groupId>junit</groupId>
++			<artifactId>junit</artifactId>
++			<version>4.13.2</version>
++			<scope>test</scope>
+ 		</dependency>
+-		<dependency>
+-			<groupId>
+-				io.qameta.allure
+-			</groupId>
+-			<artifactId>
+-				allure-generator
+-			</artifactId>
+-			<version>
+-				2.8.0
+-			</version>
+-			<scope>
+-				compile
+-			</scope>
+-		</dependency>
+-		<dependency>
+-			<groupId>
+-				org.allurefw
+-			</groupId>
+-			<artifactId>
+-				allure1-model
+-			</artifactId>
+-			<version>
+-				1.0
+-			</version>
+-		</dependency>
+-		<dependency>
+-			<groupId>
+-				io.qameta.allure
+-			</groupId>
+-			<artifactId>
+-				allure2-model-api
+-			</artifactId>
+-			<version>
+-				1.0.0
+-			</version>
+-		</dependency>
+-        <dependency>
+-            <groupId>junit</groupId>
+-            <artifactId>junit</artifactId>
+-            <version>4.13.2</version>
+-            <scope>test</scope>
+-        </dependency>
+-    </dependencies>
++	</dependencies>
++
+ 	<build>
+ 		<plugins>
+-			<!-- Compiler plug-in -->
++			<!-- Maven Compiler Plugin -->
+ 			<plugin>
+-				<groupId>
+-					org.apache.maven.plugins
+-				</groupId>
+-				<artifactId>
+-					maven-compiler-plugin
+-				</artifactId>
+-				<version>
+-					3.5.1
+-				</version>
++				<groupId>org.apache.maven.plugins</groupId>
++				<artifactId>maven-compiler-plugin</artifactId>
++				<version>3.8.1</version>
+ 				<configuration>
+-					<source>
+-						9
+-					</source>
+-					<target>
+-						9
+-					</target>
++					<source>18</source>
++					<target>18</target>
+ 				</configuration>
+ 			</plugin>
+-			<!-- Added Surefire Plugin configuration to execute tests -->
++
++			<!-- Maven Surefire Plugin -->
+ 			<plugin>
+-				<groupId>
+-					org.apache.maven.plugins
+-				</groupId>
+-				<artifactId>
+-					maven-surefire-plugin
+-				</artifactId>
+-				<version>
+-					2.12.4
+-				</version>
++				<groupId>org.apache.maven.plugins</groupId>
++				<artifactId>maven-surefire-plugin</artifactId>
++				<version>2.22.2</version>
++				<configuration>
++					<includes>
++						<include>**/Test*.java</include>
++					</includes>
++				</configuration>
+ 			</plugin>
+ 		</plugins>
+ 	</build>
+diff --git a/src/main/java/Pages/EditEvent.java b/src/main/java/Pages/EditEvent.java
+deleted file mode 100644
+index 58ebd13..0000000
+--- a/src/main/java/Pages/EditEvent.java
++++ /dev/null
+@@ -1,118 +0,0 @@
+-package Pages;
+-
+-import io.qameta.allure.Step;
+-import org.openqa.selenium.Keys;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+-import org.openqa.selenium.support.FindBy;
+-
+-
+-public class EditEvent extends BasePage {
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/header/div/div[4]/div/button/span[1]")
+-    WebElement configurationIcon;
+-
+-
+-    @FindBy(xpath = "/html/body/div[2]/div[3]/div[5]/a")
+-    WebElement eventSection;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div[1]/table/tbody/tr[1]")
+-    WebElement firstUserRow;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div[1]/table/tbody/tr[1]/td[4]/div/div/button")
+-    WebElement btneditIcon;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/form/div/div[3]/div/div/div/div[2]/div/input")
+-    WebElement btnEditEventName;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/form/div/div[3]/div/div/div/div[4]/div/textarea")
+-    WebElement updateEventDescription;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/form/div/div[3]/div/div/div/div[13]/button")
+-    WebElement btnUpdate;
+-
+-    public EditEvent(WebDriver driver) {
+-        super(driver);
+-    }
+-
+-    /**
+-     * Click on the configuration icon
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnConfigurationIcon() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(configurationIcon);
+-
+-    }
+-
+-    /**
+-     * Click on the Users section
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnEvents() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        clickOnButton(eventSection);
+-
+-    }
+-
+-    public void hoverOverEventAndClickEdit() throws InterruptedException {
+-        //addCommonWait();
+-        addCommonWait();
+-        //scrollInToView(firstUserRow);
+-        moveToElement(firstUserRow);  // Hover over the user
+-        addCommonWait();
+-    }
+-
+-    public void clickOnEditIcon() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        clickOnButton(btneditIcon);
+-
+-    }
+-
+-
+-    public void clickOnEditEventName(String name) throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        sendKeys(btnEditEventName,name);
+-
+-
+-    }
+-
+-    /**
+-     * * This method is to click on Search User Group value
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void editEventDescription(String name) throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        sendKeys(updateEventDescription, name);
+-
+-
+-    }
+-
+-    public void scrollIntoUpdateButton() throws InterruptedException {
+-        scrollInToView(btnUpdate);
+-        addCommonWait();
+-    }
+-
+-    public void clickOnUpdateButton() throws  InterruptedException{
+-
+-        addCommonWait();
+-        clickOnButton(btnUpdate);
+-
+-    }
+-
+-}
+-
+-
+-
+-
+-
+-
+-
+-
+diff --git a/src/main/java/Pages/EditUser.java b/src/main/java/Pages/EditUser.java
+deleted file mode 100644
+index cb4f31c..0000000
+--- a/src/main/java/Pages/EditUser.java
++++ /dev/null
+@@ -1,146 +0,0 @@
+-package Pages;
+-
+-import io.qameta.allure.Step;
+-import org.openqa.selenium.*;
+-import org.openqa.selenium.interactions.Actions;
+-import org.openqa.selenium.support.FindBy;
+-
+-
+-public class EditUser extends BasePage {
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/header/div/div[4]/div/button/span[1]")
+-    WebElement configurationIcon;
+-
+-
+-    @FindBy(xpath = "/html/body/div[2]/div[3]/div[2]/a")
+-    WebElement usersSection;
+-//
+-//    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div/button")
+-//    WebElement btnCreateUser;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div/div[1]/div/div[1]/div[2]/div/div/div/div/table/tbody/tr[1]/td[1]")
+-    WebElement firstUserRow;
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div/div[1]/div/div[1]/div[2]/div/div/div/div/table/tbody/tr[1]/td[4]/div/div/button")
+-    WebElement firstUserEditIcon;
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[1]/button[2]")
+-    WebElement btnInactive;
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[5]/div/div")
+-    WebElement updateSearchUserGroupDropdown;
+-    @FindBy(xpath = "/html/body/div[4]/div/ul/li[2]")
+-    WebElement updateSearchUserGroup;
+-
+-    @FindBy(xpath = "/html/body/div[4]/div/ul")
+-    WebElement groupsDropdown;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[11]/button[1]")
+-    WebElement btnUpdate;
+-
+-    public EditUser(WebDriver driver) {
+-        super(driver);
+-    }
+-
+-    /**
+-     * Click on the configuration icon
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnConfigurationIcon() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(configurationIcon);
+-
+-    }
+-
+-    /**
+-     * Click on the Users section
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnUsers() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        clickOnButton(usersSection);
+-
+-    }
+-
+-    public void hoverOverUserAndClickEdit() throws InterruptedException {
+-        //addCommonWait();
+-        addCommonWait();
+-        //scrollInToView(firstUserRow);
+-        moveToElement(firstUserRow);  // Hover over the user
+-        addCommonWait();
+-    }
+-
+-
+-    public void clickOnEdit() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        // scrollInToView(firstUserEditIcon);
+-        moveToElement(firstUserRow);
+-        clickOnButton(firstUserEditIcon);
+-
+-    }
+-
+-
+-    public void clickOnInactive() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        clickOnButton(btnInactive);
+-
+-    }
+-
+-    /**
+-     * * This method is to click on Search User Group drop down
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSearchUserGroupDropdown() throws InterruptedException {
+-        addCommonWait();
+-        updateSearchUserGroupDropdown.click();
+-    }
+-
+-    /**
+-     * * This method is to click on Search User Group value
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSearchUserGroupValue() throws InterruptedException {
+-        addCommonWait();
+-        updateSearchUserGroup.click();
+-    }
+-
+-    /**
+-     * Click on the Update button
+-     *
+-     * @throws InterruptedException //
+-     */
+-
+-
+-    @Step
+-    public void clickOnContainer() throws InterruptedException {
+-        groupsDropdown.click();
+-        groupsDropdown.sendKeys(Keys.ESCAPE);
+-    }
+-
+-
+-    public void  scrollIntoUpdate() throws InterruptedException {
+-        scrollInToView(btnUpdate);
+-//     clickOnButton(selectSearchUserGroupDropdown);
+-        addCommonWait();
+-    }
+-
+-
+-    public void clickOnUpdate() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(btnUpdate);
+-    }
+-
+-
+-}
+-
+-
+-
+-
+-
+-
+-
+-
+diff --git a/src/main/java/Pages/EventPage.java b/src/main/java/Pages/EventPage.java
+deleted file mode 100644
+index d41e60e..0000000
+--- a/src/main/java/Pages/EventPage.java
++++ /dev/null
+@@ -1,142 +0,0 @@
+-package Pages;
+-
+-import io.qameta.allure.Step;
+-import org.openqa.selenium.By;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+-import org.openqa.selenium.support.FindBy;
+-import org.openqa.selenium.support.ui.ExpectedConditions;
+-import org.openqa.selenium.support.ui.WebDriverWait;
+-
+-import java.time.Duration;
+-
+-public class EventPage extends BasePage{
+-    @FindBy(xpath = "//span[text()='Event']")
+-    WebElement pageHeader;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/header/div/div[4]/div/button")
+-    WebElement dropdown;
+-    //clicking on the burger icon
+-//
+-//    @FindBy(xpath = "//div[text()='management']")
+-//    WebElement management;
+-
+-    @FindBy(xpath = "/html/body/div[2]/div[3]/div[5]/a")
+-    WebElement manageEvent;
+-    //click on the event section in the dropdown
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div[1]/div/div[1]")
+-    WebElement createEventButton;
+-    //clicking on the +create event  button
+-
+-    @FindBy(xpath = "//input[@name='name']")
+-    WebElement enterName;
+-
+-    @FindBy(xpath = "//textarea[@name='description']")
+-    WebElement enterDescription;
+-
+-    @FindBy(xpath = "//span[text()='Create']")
+-    WebElement createButton;
+-
+-    @FindBy(xpath = "//input[@placeholder='Search by Name']")
+-    WebElement searchBarText;
+-
+-    @FindBy(xpath = "//table//td[2]//p")
+-    WebElement getText;
+-
+-    public EventPage(WebDriver driver) {
+-        super(driver);
+-    }
+-
+-//    @Step
+-//    public LeftNavigation clickOnManagement() {
+-//        management.click();
+-//        return new LeftNavigation(driver);
+-//    }
+-    /**
+-     * Click on the settings icon
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSettings() throws InterruptedException{
+-        addCommonWait();
+-        clickOnButton(dropdown);
+-    }
+-
+-    /**
+-     * This for click on the create event button
+-     * @throws InterruptedException
+-     */
+-    @Step
+-    public void clickOnManageEvent() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(manageEvent);
+-    }
+-
+-
+-    /**
+-     * Click on the create event button
+-     * @return create event page
+-     * @throws InterruptedException
+-     */
+-    public void clickOnCreateEventButton() throws InterruptedException {
+-        if(createEventButton.isDisplayed()){
+-            addCommonWait();
+-            clickOnButton(createEventButton);
+-//            scrollInToView(enterName);
+-            addCommonWait();
+-
+-        }
+-    }
+-
+-    /**
+-     * This method is for enter the event name
+-     */
+-    @Step
+-    public void enterName(String name) throws InterruptedException {
+-        addCommonWait();
+-        sendKeys(enterName,name);
+-    }
+-
+-    /**
+-     * This method is for enter the event description
+-     */
+-    @Step
+-    public void enterDescription(String description) throws InterruptedException {
+-        addCommonWait();
+-        sendKeys(enterDescription,description);
+-    }
+-
+-    /**
+-     * This for click on the create event button
+-     * @throws InterruptedException
+-     */
+-    @Step
+-    public void clickOnCreateButton() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(createButton);
+-    }
+-
+-    /**
+-     * This method is to search an event
+-     */
+-    @Step
+-    public void searchEvent(String name) throws InterruptedException {
+-        clickOnButton(searchBarText);
+-        sendKeys(searchBarText,name);
+-//        String text=getTextValue(getText);
+-//        if(text.equals(name)){
+-//            return true;
+-//        }
+-//        else
+-//            return false;
+-    }
+-
+-    @Step
+-    public boolean verifyHeader(String actualValue) throws InterruptedException {
+-
+-        if (verifyPageHeader(pageHeader, actualValue) == true) {
+-            return true;
+-        }
+-        return false;
+-    }
+-}
+diff --git a/src/main/java/Pages/UsersSection.java b/src/main/java/Pages/UsersSection.java
+deleted file mode 100644
+index ca5ffa9..0000000
+--- a/src/main/java/Pages/UsersSection.java
++++ /dev/null
+@@ -1,281 +0,0 @@
+-package Pages;
+-
+-import io.qameta.allure.Step;
+-import org.openqa.selenium.Keys;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+-import org.openqa.selenium.support.FindBy;
+-
+-public class UsersSection extends BasePage {
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/header/div/div[4]/div/button")
+-    WebElement configurationIcon;
+-
+-    @FindBy(xpath = "/html/body/div[2]/div[3]/div[2]/a")
+-    WebElement usersSection;
+-
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div/button")
+-    WebElement btnCreateUser;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[1]/div/input")
+-    WebElement enterEmail;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[2]/div/input")
+-    WebElement enterFirstName;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[3]/div/input")
+-    WebElement enterLastName;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[4]/div[1]/div/input")
+-    WebElement enterPassword;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[4]/div[2]/div")
+-    WebElement selectCountryDropdown;
+-
+-    @FindBy(xpath = "//*[@id=\"menu-\"]/div[3]/ul/li[1]")
+-    WebElement selectCountry;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[5]/div/div")
+-    WebElement selectSearchUserGroupDropdown;
+-
+-    @FindBy(xpath = "/html/body/div[4]/div/ul")
+-    WebElement groupsDropdown;
+-
+-    //*[@id="mui-38987-listbox"]
+-    @FindBy(xpath = "/html/body/div[4]/div/ul/li[1]")
+-    WebElement userGroupValues;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div")
+-    WebElement clickAside;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[6]/div/div/input")
+-    WebElement selectSearchUserPermissionsDropdown;
+-
+-    @FindBy(xpath = "/html/body/div[4]/div/ul/li[1]")
+-    WebElement searchUserPermissionsValues;
+-//
+-//    @FindBy(xpath = "//input[@value='from employees data']")
+-//    WebElement clickDataRestriction;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/form/div[10]/button[1]")
+-    WebElement btnCreate;
+-    
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div[1]")
+-    WebElement btncross;
+-
+-    @FindBy(xpath = "//*[@id=\"cancel\"]")
+-    WebElement btnCancel;
+-
+-    @FindBy(xpath = "(//input[@type='checkbox'])[1]")
+-    WebElement selectRecord;
+-
+-    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/input")
+-    WebElement searchByUserName;
+-
+-    public UsersSection(WebDriver driver) {
+-        super(driver);
+-    }
+-
+-    /**
+-     * Click on the configuration icon
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnConfigurationIcon() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(configurationIcon);
+-
+-    }
+-
+-    /**
+-     * Click on the Users section
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnUsers() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        clickOnButton(usersSection);
+-
+-    }
+-
+-    /**
+-     * Click on the create new user button
+-     *
+-     * @return create user page
+-     * @throws InterruptedException
+-     */
+-
+-    public void clickOnCreateANewUser() throws InterruptedException {
+-            addCommonWait();
+-            addCommonWait();
+-            clickOnButton(btnCreateUser);
+-    }
+-
+-
+-    /**
+-     * This method is for enter the email
+-     */
+-    @Step
+-    public void enterEmail(String email) throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        sendKeys(enterEmail, email);
+-    }
+-//
+-    public void scrollIntoGroupDropdown() throws InterruptedException {
+-            scrollInToView(selectSearchUserGroupDropdown);
+-//        clickOnButton(selectSearchUserGroupDropdown);
+-        addCommonWait();
+-    }
+-
+-
+-    /**
+-     * This method is for enter the first name
+-     */
+-    @Step
+-    public void enterFirstName(String fName) throws InterruptedException {
+-        addCommonWait();
+-        sendKeys(enterFirstName, fName);
+-    }
+-
+-    /**
+-     * This method is for enter the last name
+-     */
+-    @Step
+-    public void enterLastName(String lName) throws InterruptedException {
+-        addCommonWait();
+-        sendKeys(enterLastName, lName);
+-    }
+-
+-    /**
+-     * This method is for enter the temporary password
+-     */
+-    @Step
+-    public void enterTempPassword(String password) throws InterruptedException {
+-        addCommonWait();
+-        sendKeys(enterPassword, password);
+-    }
+-
+-    /**
+-     * * This method is to click on Select country drop down
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSelectCountryDropdown() throws InterruptedException {
+-        addCommonWait();
+-        selectCountryDropdown.click();
+-    }
+-
+-    /**
+-     * * This method is to click on Select country
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSelectCountry() throws InterruptedException {
+-        addCommonWait();
+-        selectCountry.click();
+-    }
+-
+-    /**
+-     * * This method is to click on Select Search User Group drop down
+-     *
+-     * @throws InterruptedException
+-     */
+-
+-
+-    public void clickOnSelectSearchUserGroupDropdown() throws InterruptedException {
+-        addCommonWait();
+-        selectSearchUserGroupDropdown.click();
+-    }
+-
+-    /**
+-     * * This method is to click on Select User Groups
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSelectUserGroups() throws InterruptedException {
+-        addCommonWait();
+-        userGroupValues.click();
+-    }
+-
+-    /**
+-     * * This method is to click on Select Search User Permission drop down
+-     *
+-     * @throws InterruptedException
+-     */
+-
+-
+-    public void clickOnSelectSearchUserPermissionsDropdown() throws InterruptedException {
+-        addCommonWait();
+-        addCommonWait();
+-        selectSearchUserPermissionsDropdown.click();
+-    }
+-
+-    /**
+-     * * This method is to click on Select Search User Permission drop down
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnSelectSearchUserPermissions() throws InterruptedException {
+-
+-        searchUserPermissionsValues.click();
+-        addCommonWait();
+-        addCommonWait();
+-    }
+-
+-    /**
+-     * * This method is to click on Data Restriction radio button
+-     *
+-     * @throws InterruptedException
+-//     */
+-//    public void clickOnDataRestriction() throws InterruptedException {
+-//        addCommonWait();
+-//        clickDataRestriction.click();
+-//    }
+-
+-    /**
+-     * This method is to click on Create Button
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnCreateButton() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(btnCreate);
+-    }
+-
+-
+-    public void clickOnbtncross() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(btncross);
+-    }
+-
+-
+-    /**
+-     * This method is to click on Cancel Button
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void clickOnCancelButton() throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(btnCancel);
+-    }
+-
+-    /**
+-     * This method is to Search users by searchbar
+-     *
+-     * @throws InterruptedException
+-     */
+-    public void searchUser(String name) throws InterruptedException {
+-        addCommonWait();
+-        clickOnButton(searchByUserName);
+-        sendKeys(searchByUserName, name);
+-    }
+-
+-    @Step
+-    public void clickOnContainer() throws InterruptedException {
+-        groupsDropdown.click();
+-        groupsDropdown.sendKeys(Keys.ESCAPE);
+-    }
+-
+-}
+\ No newline at end of file
+diff --git a/src/test/java/SmokeTestSuites/TestSmokeTestSuites.java b/src/test/java/SmokeTestSuites/TestSmokeTestSuites.java
+deleted file mode 100644
+index 384155e..0000000
+--- a/src/test/java/SmokeTestSuites/TestSmokeTestSuites.java
++++ /dev/null
+@@ -1,25 +0,0 @@
+-package SmokeTestSuites;
+-
+-import SmokeTests.corporate_loginandregistration.TestSmokeLogin;
+-import SmokeTests.corporate_loginandregistration.TestSmokePartnerRegister;
+-import SmokeTests.corporate_other.TestSmokeSingleInvite;
+-import SmokeTests.corporate_other.TestSmokeVerifyEmail;
+-import Utilities.AllureListener;
+-import SmokeTests.corporate_events.TestSmokeCreateEvent;
+-import SmokeTests.corporate_events.TestSmokeEditEvent;
+-import org.junit.runner.RunWith;
+-import org.junit.runners.Suite;
+-import org.testng.annotations.Listeners;
+-
+-@RunWith(Suite.class)
+-@Suite.SuiteClasses({TestSmokeLogin.class,
+-        TestSmokeCreateEvent.class,
+-        TestSmokeEditEvent.class,
+-        TestSmokeSingleInvite.class,
+-        TestSmokeVerifyEmail.class,
+-        TestSmokePartnerRegister.class})
+-
+-@Listeners({AllureListener.class})
+-public class TestSmokeTestSuites {
+-
+-}
+diff --git a/src/test/java/SmokeTests/corporate_events/TestSmokeCreateEvent.java b/src/test/java/SmokeTests/corporate_events/TestSmokeCreateEvent.java
+deleted file mode 100644
+index 8c4ec9e..0000000
+--- a/src/test/java/SmokeTests/corporate_events/TestSmokeCreateEvent.java
++++ /dev/null
+@@ -1,63 +0,0 @@
+-package SmokeTests.corporate_events;
+-
+-import Pages.PageFactory;
+-import Utilities.AllureListener;
+-import Utilities.DriverFactory;
+-import io.qameta.allure.Description;
+-import io.qameta.allure.Feature;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Listeners;
+-import org.testng.annotations.Test;
+-
+-@Listeners({AllureListener.class})
+-public class TestSmokeCreateEvent extends DriverFactory {
+-
+-
+-    public static String userName = propertyFileReader.getProperty("config", "UserName");
+-    public static String password = propertyFileReader.getProperty("config", "Password");
+-    public static String eventName=propertyFileReader.getProperty("String","eventName");
+-
+-    PageFactory pageFactory = new PageFactory();
+-
+-    @BeforeTest
+-    private void OpenURL() {
+-        driver.get(url);
+-        pageFactory.init();
+-    }
+-    @Test(description = "Checking the event creation", priority = 1)
+-    @Description("Checking the event creation")
+-    @Feature("EventCreation")
+-    public void CreateEvent() throws InterruptedException {
+-        PageFactory.loginPage.login(userName, password);
+-        PageFactory.welcomeModal.clickSkipBtn();
+-        PageFactory.eventPage.clickOnSettings();
+-        PageFactory.eventPage.clickOnManageEvent();
+-        PageFactory.eventPage.clickOnCreateEventButton();
+-        PageFactory.eventPage.enterName("Automation_Test");
+-        PageFactory.eventPage.enterDescription("This is an automation testing");
+-        PageFactory.eventPage.clickOnCreateButton();
+-        PageFactory.createEventModal.clickOnCreateButtonModal();
+-        PageFactory.eventPage.searchEvent("Automation_Test");
+-
+-    }
+-
+-//    @Test(description = "Test the start date is before from end date", p
+-////    @Feature("CreateEvent")
+-////    public void checkStartEndDate() throws InterruptedException {
+-////        PageFactory.createEvent.checkDate(eventName,eventStartDate,ealierEndDate);
+-////        Assert.assertTrue(PageFactory.createEvent.verifyHeader(ealierEndDateError), "End Date can't be before Start Date.");
+-////    }
+-////
+-////    @Test(description = "Test the confirmation box after click on the create button", priority = 3)riority = 2)
+-//    @Description()
+-//    @Description()
+-//    @Feature("CreateEvent")
+-//    public void checkConfirmBox() throws InterruptedException {
+-//        PageFactory.createEvent.confirmBox(eventName,eventStartDate,eventEndDate);
+-//        Assert.assertTrue(PageFactory.createEvent.verifyHeader(createEventSuccessText),
+-//                "Successfully created an Event");
+-//        PageFactory.createEvent.logOut();
+-//    }
+-
+-}
+-
+diff --git a/src/test/java/SmokeTests/corporate_events/TestSmokeEditEvent.java b/src/test/java/SmokeTests/corporate_events/TestSmokeEditEvent.java
+deleted file mode 100644
+index b1b5687..0000000
+--- a/src/test/java/SmokeTests/corporate_events/TestSmokeEditEvent.java
++++ /dev/null
+@@ -1,43 +0,0 @@
+-package SmokeTests.corporate_events;
+-
+-import Pages.PageFactory;
+-import Utilities.AllureListener;
+-import Utilities.DriverFactory;
+-import io.qameta.allure.Description;
+-import io.qameta.allure.Feature;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Listeners;
+-import org.testng.annotations.Test;
+-
+-@Listeners({AllureListener.class})
+-public class TestSmokeEditEvent extends DriverFactory {
+-    public static String userName = propertyFileReader.getProperty("config", "UserName");
+-    public static String password = propertyFileReader.getProperty("config", "Password");
+-
+-    PageFactory pageFactory = new PageFactory();
+-
+-    @BeforeTest
+-    private void OpenURL() {
+-        driver.get(url);
+-        pageFactory.init();
+-    }
+-
+-    @Test(description = "Checking the edit event", priority = 1)
+-    @Description("Checking the edit event")
+-    @Feature("EventEdit")
+-    public void EditEvent() throws InterruptedException{
+-        PageFactory.loginPage.login(userName, password);
+-        PageFactory.welcomeModal.clickSkipBtn();
+-        PageFactory.editEvent.clickOnConfigurationIcon();
+-        PageFactory.editEvent.clickOnEvents();
+-        PageFactory.editEvent.hoverOverEventAndClickEdit();
+-        PageFactory.editEvent.clickOnEditIcon();
+-        PageFactory.editEvent.clickOnEditEventName("Automation Test1");
+-       PageFactory.editEvent.editEventDescription("Testing 1");
+-        PageFactory.editEvent.scrollIntoUpdateButton();
+-        PageFactory.editEvent.clickOnUpdateButton();
+-
+-
+-
+-    }
+-}
+diff --git a/src/test/java/SmokeTests/corporate_users/TestSmokeCreateUser.java b/src/test/java/SmokeTests/corporate_users/TestSmokeCreateUser.java
+deleted file mode 100644
+index c256124..0000000
+--- a/src/test/java/SmokeTests/corporate_users/TestSmokeCreateUser.java
++++ /dev/null
+@@ -1,75 +0,0 @@
+-package SmokeTests.corporate_users;
+-
+-import Pages.PageFactory;
+-import Utilities.DriverFactory;
+-import io.qameta.allure.Description;
+-import io.qameta.allure.Feature;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Test;
+-import java.util.Random;
+-
+-public class TestSmokeCreateUser extends DriverFactory {
+-
+-    public static String userName = propertyFileReader.getProperty("config", "UserName");
+-    public static String password = propertyFileReader.getProperty("config", "Password");
+-    PageFactory pageFactory = new PageFactory();
+-
+-    @BeforeTest
+-    private void OpenURL() {
+-        driver.get(url);
+-        pageFactory.init();
+-    }
+-
+-    @Test(description = "Create a new user", priority = 1)
+-    @Description("Create a new user")
+-    @Feature("CreateUser")
+-
+-    public void CreateUser() throws InterruptedException{
+-
+-        //Generate a random number
+-        Random rand = new Random();
+-        int randomNumber = rand.nextInt(10000); // Adjust the bound as needed
+-
+-        // Create a randomized email
+-        String baseEmail = "Test";
+-        String randomizedEmail = baseEmail + randomNumber ;
+-
+-        PageFactory.loginPage.login(userName, password);
+-     PageFactory.welcomeModal.clickSkipBtn();
+-        PageFactory.usersSection.clickOnConfigurationIcon();
+-        PageFactory.usersSection.clickOnUsers();
+-        PageFactory.usersSection.clickOnCreateANewUser();
+-        PageFactory.usersSection.enterEmail(randomizedEmail); // Use randomized email
+-        PageFactory.usersSection.enterFirstName("Anne");
+-        PageFactory.usersSection.enterLastName("Shirley");
+-        PageFactory.usersSection.enterTempPassword("Abc12345!!!");
+-        PageFactory.usersSection.clickOnSelectCountryDropdown();
+-        PageFactory.usersSection.clickOnSelectCountry();
+-//        PageFactory.usersSection.scrollUntilVisible();
+-        PageFactory.usersSection.scrollIntoGroupDropdown();
+-        PageFactory.usersSection.clickOnSelectSearchUserGroupDropdown();
+-        PageFactory.usersSection.clickOnSelectUserGroups();
+-        PageFactory.usersSection.clickOnContainer();
+-        PageFactory.usersSection.clickOnSelectSearchUserPermissionsDropdown();
+-        PageFactory.usersSection.clickOnSelectSearchUserPermissions();
+-        PageFactory.usersSection.clickOnContainer();
+-        PageFactory.usersSection.clickOnCreateButton();
+-        PageFactory.usersSection.clickOnbtncross();
+-        PageFactory.usersSection.searchUser("test11@sdf.lk");
+-    }
+-
+-    @Test(description = "Cancel the create user", priority = 2)
+-    @Description("Cancel the create user")
+-    @Feature("CancelUser")
+-    public void CancelUser() throws InterruptedException{
+-        PageFactory.usersSection.clickOnCreateANewUser();
+-        PageFactory.usersSection.enterEmail("onel");
+-        PageFactory.usersSection.enterFirstName("Onel");
+-        PageFactory.usersSection.enterLastName("John");
+-        PageFactory.usersSection.enterTempPassword("Abc12345!!");
+-        PageFactory.usersSection.clickOnCancelButton();
+-        PageFactory.usersSection.clickOnSelectCountryDropdown();
+-        PageFactory.usersSection.clickOnSelectCountry();
+-    }
+-
+-}
+diff --git a/src/test/java/SmokeTests/corporate_users/TestSmokeEditUser.java b/src/test/java/SmokeTests/corporate_users/TestSmokeEditUser.java
+deleted file mode 100644
+index 6f22db4..0000000
+--- a/src/test/java/SmokeTests/corporate_users/TestSmokeEditUser.java
++++ /dev/null
+@@ -1,40 +0,0 @@
+-package SmokeTests.corporate_users;
+-
+-import Pages.PageFactory;
+-import Utilities.DriverFactory;
+-import io.qameta.allure.Description;
+-import io.qameta.allure.Feature;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Test;
+-
+-public class TestSmokeEditUser extends DriverFactory {
+-    public static String userName = propertyFileReader.getProperty("config", "UserName");
+-    public static String password = propertyFileReader.getProperty("config", "Password");
+-    PageFactory pageFactory = new PageFactory();
+-
+-    @BeforeTest
+-    private void OpenURL() {
+-        driver.get(url);
+-        pageFactory.init();
+-    }
+-
+-    @Test(description = "Edit a created user", priority = 1)
+-    @Description("Edit a created user")
+-    @Feature("EditUser")
+-    public void CreateUser() throws InterruptedException {
+-        PageFactory.loginPage.login(userName, password);
+-        PageFactory.welcomeModal.clickSkipBtn();
+-        PageFactory.editUser.clickOnConfigurationIcon();
+-        PageFactory.usersSection.clickOnUsers();
+-        //  PageFactory.usersSection.clickOnCreateANewUser();
+-//     PageFactory.editUser.clickOnUsers();
+-        PageFactory.editUser.hoverOverUserAndClickEdit();
+-        PageFactory.editUser.clickOnEdit();
+-        PageFactory.editUser.clickOnInactive();
+-        PageFactory.editUser.clickOnSearchUserGroupDropdown();
+-        PageFactory.editUser.clickOnSearchUserGroupValue();
+-        PageFactory.editUser.clickOnContainer();
+-        PageFactory.editUser.scrollIntoUpdate();
+-        PageFactory.editUser.clickOnUpdate();
+-    }
+-}

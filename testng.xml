@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SmokeTests" preserve-order="true">
+    <test name="Corporate Users">
+        <classes>
+            <class name="SmokeTests.corporate_users.TestSmokeCreateUser">
+                <methods>
+                    <include name="CreateUser"/>
+                </methods>
+            </class>
+            <class name="SmokeTests.corporate_users.TestSmokeEditUser">
+                <methods>
+                    <include name="EditUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

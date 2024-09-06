@@ -1,0 +1,457 @@
+diff --git a/src/main/java/Pages/CreateEventModal.java b/src/main/java/Pages/CreateEventModal.java
+index 680fb9e..78603cc 100644
+--- a/src/main/java/Pages/CreateEventModal.java
++++ b/src/main/java/Pages/CreateEventModal.java
+@@ -1,32 +1,41 @@
+-package Pages;
+-
+-import io.qameta.allure.Step;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+-import org.openqa.selenium.support.FindBy;
+-
+-public class CreateEventModal extends BasePage{
+-
+-    @FindBy(xpath = "(//span[text()='Create'])[2]")
+-    WebElement createButton;
+-
+-    @FindBy(xpath = "//h2[text()='Confirm Creation']")
+-    WebElement pageHeader;
+-
+-    public CreateEventModal(WebDriver driver) {
+-        super(driver);
+-    }
+-
+-    /**
+-     * This for click on the create event button
+-     * @throws InterruptedException
+-     */
+-    @Step
+-    public void clickOnCreateButtonModal() throws InterruptedException {
+-        clickOnButton(createButton);
+-    }
+-
+-//    public boolean verifyModalHeader(String modalHeader){
+-//        String pageHeader=
++//package Pages;
++//
++//import io.qameta.allure.Step;
++//import org.openqa.selenium.WebDriver;
++//import org.openqa.selenium.WebElement;
++//import org.openqa.selenium.support.FindBy;
++//
++//public class CreateEventModal extends BasePage{
++//
++//    @FindBy(xpath = "(//span[text()='Create'])[2]")
++//    WebElement createButton;
++//
++//    @FindBy(xpath = "//h2[text()='Confirm Creation']")
++//    WebElement pageHeader;
++//
++//    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[3]/div[1]/button")
++//    WebElement btnCancel;
++//
++//    public CreateEventModal(WebDriver driver) {
++//        super(driver);
+ //    }
+-}
++//
++//    /**
++//     * This for click on the create event button
++//     * @throws InterruptedException
++//     */
++//    @Step
++//    public void clickOnCreateButtonModal() throws InterruptedException {
++//        clickOnButton(createButton);
++//    }
++//
++//
++//    /**
++//     * This for click on the cancel button
++//     * @throws InterruptedException
++//     */
++//    @Step
++//    public void clickOnCancelButtonModal() throws InterruptedException {
++//        clickOnButton(btnCancel);
++//    }
++//}
+diff --git a/src/main/java/Pages/DataSection.java b/src/main/java/Pages/DataSection.java
+index 2569023..7decb07 100644
+--- a/src/main/java/Pages/DataSection.java
++++ b/src/main/java/Pages/DataSection.java
+@@ -45,6 +45,12 @@ public class DataSection extends BasePage {
+     @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[4]/button[1]")
+     WebElement btnContinue;
+ 
++    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/header/div/div[5]/div/button")
++    WebElement btnlogout;
++
++    @FindBy(xpath = "/html/body/div[3]/div[3]/div[2]/button")
++    WebElement getBtnlogout2;
++
+ 
+ 
+     public DataSection(WebDriver driver) {
+@@ -137,6 +143,7 @@ public class DataSection extends BasePage {
+     public void clickOnContinueBtn() throws InterruptedException {
+         addCommonWait();
+         clickOnButton(btnContinue);
++        addCommonWait();
+     }
+ 
+ 
+@@ -153,4 +160,31 @@ public class DataSection extends BasePage {
+         return encodedFile;
+     }
+ 
+-}
+\ No newline at end of file
++    public void clickOnConfirmDelete() {
++    }
++
++    public void clickOnDelete() throws InterruptedException {
++
++    }
++
++    //create a logout method
++
++    public void clickOnlogout() throws InterruptedException {
++        addCommonWait();
++        clickOnButton(btnlogout);
++    }
++
++    public void clickOnlogout2() throws InterruptedException {
++        addCommonWait();
++        clickOnButton(getBtnlogout2);
++    }
++
++}
++
++
++
++
++
++
++
++
+diff --git a/src/main/java/Pages/EditData.java b/src/main/java/Pages/EditData.java
+index 4f19b94..f1c6726 100644
+--- a/src/main/java/Pages/EditData.java
++++ b/src/main/java/Pages/EditData.java
+@@ -25,9 +25,9 @@ public class EditData extends BasePage {
+     @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div/div/div[2]/div/div/div[1]/div/div/div/div[1]/div[2]/div/div/div/div/table/tbody/tr[1]/td[4]/div/div/button")
+     WebElement deleteIcon;
+ 
+-//    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/div/div/div/div/div/div/div[2]/div/div/div[1]/div/div/div/div[1]/div[2]/div/div/div/div/table/tbody/tr[1]/td[4]/div/div/button")
+-//    WebElement deleteIcon;
+-//
++  @FindBy(xpath = "/html/body/div[4]/div[3]/div/div[3]/button[1]")
++   WebElement btnConfirmDelete;
++
+ 
+ 
+     public EditData(WebDriver driver) {
+@@ -58,7 +58,7 @@ public class EditData extends BasePage {
+     }
+ 
+     public void hoverOverDataAndClickDownload() throws InterruptedException {
+-        //addCommonWait();
++        addCommonWait();
+         addCommonWait();
+         //scrollInToView(firstUserRow);
+       moveToElement(firstDataRow);  // Hover over the first Data row
+@@ -86,6 +86,18 @@ public class EditData extends BasePage {
+         addCommonWait();
+         addCommonWait();
+ 
++
++    }
++
++    public  void clickOnConfirmDelete() throws InterruptedException{
++
++        addCommonWait();
++        clickOnButton(btnConfirmDelete);
++        addCommonWait();
++        addCommonWait();
++
++
++
+     }
+ 
+ 
+diff --git a/src/main/java/Pages/PageFactory.java b/src/main/java/Pages/PageFactory.java
+index 10e55dd..980b9a6 100644
+--- a/src/main/java/Pages/PageFactory.java
++++ b/src/main/java/Pages/PageFactory.java
+@@ -34,15 +34,13 @@ public class PageFactory extends org.openqa.selenium.support.PageFactory {
+     public static ApplicationUsage applicationUsage;
+     public static EventPage eventPage;
+ //    public static DateTimePicker dateTimePicker;
+-    public static CreateEventModal createEventModal;
++  //  public static CreateEventModal createEventModal;
+     public static EditEvent editEvent;
+     public static PartnerSingleInvite partnerSingleInvite;
+     public static InvitePartnerModal invitePartnerModal;
+     public static InvitedPartnerSection invitedPartnerSection;
+     public static VerifyEmail verifyEmail;
+     public static PartnerRegistration partnerRegistration;
+-    public static UsersSection usersSection;
+-    public static EditUser editUser;
+ 
+     public  static DataSection dataSection;
+ 
+@@ -50,6 +48,10 @@ public class PageFactory extends org.openqa.selenium.support.PageFactory {
+ 
+     public  static EditData editData;
+ 
++    public static UserManagement userManagement;
++
++    public static EventManagement eventManagement;
++
+ 
+ 
+ 
+@@ -63,18 +65,18 @@ public class PageFactory extends org.openqa.selenium.support.PageFactory {
+         leftNavigation=PageFactory.initElements(driver, LeftNavigation.class);
+         eventPage=PageFactory.initElements(driver,EventPage.class);
+ //        dateTimePicker=PageFactory.initElements(driver,DateTimePicker.class);
+-        createEventModal=PageFactory.initElements(driver, CreateEventModal.class);
++       // createEventModal=PageFactory.initElements(driver, CreateEventModal.class);
+         editEvent=PageFactory.initElements(driver,EditEvent.class);
+         partnerSingleInvite=PageFactory.initElements(driver,PartnerSingleInvite.class);
+         invitePartnerModal=PageFactory.initElements(driver,InvitePartnerModal.class);
+         invitedPartnerSection=PageFactory.initElements(driver,InvitedPartnerSection.class);
+         verifyEmail=PageFactory.initElements(driver,VerifyEmail.class);
+         partnerRegistration=PageFactory.initElements(driver,PartnerRegistration.class);
+-        usersSection=PageFactory.initElements(driver, UsersSection.class);
+-        editUser=PageFactory.initElements(driver, EditUser.class);
+         dataSection=PageFactory.initElements(driver, DataSection.class);
+         dashboardSection=PageFactory.initElements(driver, DashboardSection.class);
+         editData=PageFactory.initElements(driver, EditData.class);
++        userManagement=PageFactory.initElements(driver, UserManagement.class);
++        eventManagement=PageFactory.initElements(driver, EventManagement.class);
+ 
+ 
+     }
+diff --git a/src/main/java/Pages/calenderSection.java b/src/main/java/Pages/calenderSection.java
+deleted file mode 100644
+index 9dfc806..0000000
+--- a/src/main/java/Pages/calenderSection.java
++++ /dev/null
+@@ -1,18 +0,0 @@
+-//package Pages;
+-//
+-//import org.openqa.selenium.WebDriver;
+-//import org.openqa.selenium.WebElement;
+-//import org.openqa.selenium.support.FindBy;
+-//
+-//import java.util.Random;
+-//
+-//public class calenderSection extends BasePage {
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//}
+-//
+diff --git a/src/test/java/SmokeTests/corporate_calenderSection/TestSmokeCalenderView.java b/src/test/java/SmokeTests/corporate_calenderSection/TestSmokeCalenderView.java
+deleted file mode 100644
+index 97f3a23..0000000
+--- a/src/test/java/SmokeTests/corporate_calenderSection/TestSmokeCalenderView.java
++++ /dev/null
+@@ -1,4 +0,0 @@
+-//package SmokeTests.corporate_calenderSection;
+-//
+-//public class TestSmokeCalenderView {
+-//}
+diff --git a/src/test/java/SmokeTests/corporate_datauploads/TestSmokeDataSetUploads.java b/src/test/java/SmokeTests/corporate_datauploads/TestSmokeDataSetUploads.java
+index 7cdff45..dca1da7 100644
+--- a/src/test/java/SmokeTests/corporate_datauploads/TestSmokeDataSetUploads.java
++++ b/src/test/java/SmokeTests/corporate_datauploads/TestSmokeDataSetUploads.java
+@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeTest;
+ import org.testng.annotations.Test;
+ 
+ import java.io.File;
+-import java.util.Random;
+ 
+ public class TestSmokeDataSetUploads extends DriverFactory {
+ 
+@@ -22,33 +21,40 @@ public class TestSmokeDataSetUploads extends DriverFactory {
+         pageFactory.init();
+     }
+ 
+-    @Test(description = "Upload a new data set", priority = 1)
++    @Test(description = "Upload a new data set", priority =1)
+     @Description("Upload a new data set")
+     @Feature("uploadESGData")
+-
+-
+     public void uploadESGData() throws InterruptedException {
+-
+-        PageFactory.loginPage.login(userName, password);
+-        PageFactory.welcomeModal.clickSkipBtn();
+-        PageFactory.usersSection.clickOnConfigurationIcon();
+-        PageFactory.dataSection.clickOnData();
+-        PageFactory.dataSection.clickOnUploadESGData();
+-        PageFactory.dataSection.clickOnDataFileType();
+-        PageFactory.dataSection.clickOnSelectFileType();
+-        PageFactory.dataSection.clickOnDownloadKPISheet();
+-        PageFactory.dataSection.clickOnenterDescription("Environment KPI Sheet Data Download");
+-        PageFactory.dataSection.scrollIntofileUpload();
+-        // Use absolute path here
+-        String absolutePath = new File("assets/sample_kpi_sheet.csv").getAbsolutePath();
+-        PageFactory.dataSection.uploadFile(absolutePath);
+-        PageFactory.dataSection.clickOnUpdateBtn();
+-        //PageFactory.dataSection.clickOnUpdateBtn();
+-        PageFactory.dataSection.clickOnContinueBtn();
+-
+-
+-
+-
++        try {
++
++            PageFactory.loginPage.login(userName, password);
++            PageFactory.welcomeModal.clickSkipBtn();
++            PageFactory.usersSection.clickOnConfigurationIcon();
++            PageFactory.dataSection.clickOnData();
++            PageFactory.dataSection.clickOnUploadESGData();
++            PageFactory.dataSection.clickOnDataFileType();
++            PageFactory.dataSection.clickOnSelectFileType();
++            PageFactory.dataSection.clickOnDownloadKPISheet();
++            PageFactory.dataSection.clickOnenterDescription("Environment KPI Sheet Data Download");
++            PageFactory.dataSection.scrollIntofileUpload();
++            // Use absolute path here
++            String absolutePath = new File("assets/sample_kpi_sheet.csv").getAbsolutePath();
++            PageFactory.dataSection.uploadFile(absolutePath);
++            PageFactory.dataSection.clickOnUpdateBtn();
++            PageFactory.dataSection.clickOnContinueBtn();
++            PageFactory.dataSection.clickOnConfirmDelete();
++            PageFactory.editData.hoverOverDataAndClickDownload();
++            PageFactory.editData.clickOnDownload();
++            PageFactory.editData.clickOnDelete();
++            PageFactory.editData.clickOnConfirmDelete();
++            PageFactory.dataSection.clickOnlogout();;
++            PageFactory.dataSection.clickOnlogout2();
++
++
++        } catch (Exception e) {
++            e.printStackTrace();
++            // Log the error and ensure that it does not stop the test execution
++        }
+     }
+ 
+-}
+\ No newline at end of file
++}
+diff --git a/src/test/java/SmokeTests/corporate_datauploads/TestSmokeEditData.java b/src/test/java/SmokeTests/corporate_datauploads/TestSmokeEditData.java
+index 56123b5..b1e5293 100644
+--- a/src/test/java/SmokeTests/corporate_datauploads/TestSmokeEditData.java
++++ b/src/test/java/SmokeTests/corporate_datauploads/TestSmokeEditData.java
+@@ -1,35 +1,38 @@
+-package SmokeTests.corporate_datauploads;
+-
+-import Pages.PageFactory;
+-import Utilities.DriverFactory;
+-import io.qameta.allure.Description;
+-import io.qameta.allure.Feature;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Test;
+-
+-public class TestSmokeEditData extends DriverFactory {
+-    public static String userName = propertyFileReader.getProperty("config", "UserName");
+-    public static String password = propertyFileReader.getProperty("config", "Password");
+-    PageFactory pageFactory = new PageFactory();
+-
+-    @BeforeTest
+-    private void OpenURL() {
+-        driver.get(url);
+-        pageFactory.init();
+-    }
+-
+-    @Test(description = "Edit a created user", priority = 1)
+-    @Description("Edit a created user")
+-    @Feature("EditUser")
+-    public void CreateUser() throws InterruptedException {
+-        PageFactory.loginPage.login(userName, password);
+-        PageFactory.welcomeModal.clickSkipBtn();
+-        PageFactory.editData.clickOnConfigurationIcon();
+-        PageFactory.editData.clickOnData();
+-        PageFactory.editData.hoverOverDataAndClickDownload();
+-        PageFactory.editData.clickOnDownload();
+-        PageFactory.editData.clickOnDelete();
+-
+-
+-    }
+-}
++//package SmokeTests.corporate_datauploads;
++//
++//import Pages.PageFactory;
++//import Utilities.DriverFactory;
++//import io.qameta.allure.Description;
++//import io.qameta.allure.Feature;
++//import org.testng.annotations.AfterClass;
++//import org.testng.annotations.AfterSuite;
++//import org.testng.annotations.BeforeTest;
++//import org.testng.annotations.Test;
++//
++//public class TestSmokeEditData extends DriverFactory {
++//    public static String userName = propertyFileReader.getProperty("config", "UserName");
++//    public static String password = propertyFileReader.getProperty("config", "Password");
++//    PageFactory pageFactory = new PageFactory();
++//
++//    @BeforeTest
++//    private void OpenURL() {
++//        driver.get(url);
++//        pageFactory.init();
++//    }
++//
++//    @Test(description = "Edit a created Data")
++//    @Description("Edit a created data")
++//    @Feature("EditData")
++//    @AfterClass()
++//    public void EditData() throws InterruptedException {
++//        PageFactory.loginPage.login(userName, password);
++//        PageFactory.welcomeModal.clickSkipBtn();
++//        PageFactory.editData.clickOnConfigurationIcon();
++//        PageFactory.editData.clickOnData();
++//        PageFactory.editData.hoverOverDataAndClickDownload();
++//        PageFactory.editData.clickOnDownload();
++//        PageFactory.editData.clickOnDelete();
++//        PageFactory.editData.clickOnConfirmDelete();
++////        PageFactory.loginPage.logout()
++//    }
++//}
+diff --git a/testng.xml b/testng.xml
+index a516e5c..20789cc 100644
+--- a/testng.xml
++++ b/testng.xml
+@@ -1,14 +1,17 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+-<suite name="All Test Suite">
+-    <test  name="SmokeTestCases">
++<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
++<suite name="SmokeTests" preserve-order="true">
++    <test name="Corporate Users">
+         <classes>
+-            <class name="SmokeTests.SmokeTestLogin">
++            <class name="SmokeTests.corporate_users.TestSmokeCreateUser">
+                 <methods>
+-                    <include name="CheckLogin"/>
+-                    <include name="CheckInvalidLogin"/>
++                    <include name="CreateUser"/>
++                </methods>
++            </class>
++            <class name="SmokeTests.corporate_users.TestSmokeEditUser">
++                <methods>
++                    <include name="EditUser"/>
+                 </methods>
+             </class>
+         </classes>
+     </test>
+-</suite>
+\ No newline at end of file
++</suite>

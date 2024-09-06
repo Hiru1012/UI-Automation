@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "test": "run-script-os",
+    "serve": "allure-commandline serve",
+    "test:windows": "mvn test",
+    "test:default": "./mvnw test"
+  },
+  "devDependencies": {
+    "allure-commandline": "^2.24.1"
+  },
+  "dependencies": {
+    "run-script-os": "^1.1.6"
+  }
+}
